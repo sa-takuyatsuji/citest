@@ -5,3 +5,5 @@ jobs:
     working_directory: /
     steps:
       - checkout
+      - run:
+        command: docker
