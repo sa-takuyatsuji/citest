@@ -6,7 +6,7 @@ jobs:
     working_directory: /app
     steps:
       - run:
-          command: docker version
-      - run:
           command: ls -al
-      - checkout
+      - setup_remote_docker
+      - run:
+          command: docker version
