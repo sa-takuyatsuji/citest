@@ -9,6 +9,7 @@ jobs:
           command: pwd
       - run:
           command: ls -al
+      - checkout
       - setup_remote_docker
       - run:
           command: docker version
