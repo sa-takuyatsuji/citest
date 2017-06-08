@@ -4,6 +4,6 @@ jobs:
     machine: true
     working_directory: /
     steps:
-      - checkout
       - run:
           command: docker
+      - checkout
