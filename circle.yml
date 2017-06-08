@@ -5,5 +5,7 @@ jobs:
     working_directory: /
     steps:
       - run:
-          command: docker
+          command: docker version
+      - run:
+          command: ls -al
       - checkout
