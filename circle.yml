@@ -6,6 +6,8 @@ jobs:
     working_directory: /app
     steps:
       - run:
+          command: apt-get update && apt-get install -y python-pip
+      - run:
           command: pip install awscli
       - run:
           command: aws ecr get-login --no-include-email --region ap-northeast-1
