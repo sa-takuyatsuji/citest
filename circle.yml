@@ -6,9 +6,9 @@ jobs:
     working_directory: /app
     steps:
       - run:
-          command: echo $CIRCLE_TAG
-      - run: echo a
-      - run: echo $CIRCLE_PROJECT_USERNAME
+          command: DOCKER_TAGNAME=$CIRCLE_BRANCH
+      - run:
+          command: echo $DOCKER_TAGNAME
       - run:
           command: apt-get update && apt-get install -y python-dev python-pip
       - run:
@@ -26,8 +26,8 @@ jobs:
           command: $(aws ecr get-login --no-include-email --region ap-northeast-1)
       - checkout
       - run:
-          command: docker build -t nk-api .
+          command: docker build -t $DOCKER_TAGNAM .
       - run:
-          command: docker tag nk-api:latest 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:latest
+          command: docker tag nk-api:$DOCKER_TAGNAME 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:$DOCKER_TAGNAME
       - run:
-          command: docker push 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:latest
+          command: docker push 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:$DOCKER_TAGNAME
