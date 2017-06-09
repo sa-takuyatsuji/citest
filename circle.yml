@@ -10,7 +10,7 @@ jobs:
       - run:
           command: pip install awscli
       - run:
-          command: aws ecr get-login --no-include-email --region ap-northeast-1
+          command: `aws ecr get-login --no-include-email --region ap-northeast-1`
       - checkout
       - setup_remote_docker
       - run:
