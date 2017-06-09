@@ -9,9 +9,6 @@ jobs:
           command: apt-get update && apt-get install -y python-dev python-pip
       - run:
           command: pip install awscli
-      - run:
-          command: $(aws ecr get-login --no-include-email --region ap-northeast-1)
-      - checkout
       - setup_remote_docker
       - run:
           name: Install Docker client
@@ -22,4 +19,13 @@ jobs:
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin        
       - run:
-          command: docker version
+          command: $(aws ecr get-login --no-include-email --region ap-northeast-1)
+      - checkout
+      - run:
+          command: docker build . -t hoge
+      - run:
+          command: docker build -t nk-api .
+      - run:
+          command: docker tag nk-api:hoge 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:hoge
+      - run:
+          command: docker push 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:hoge
