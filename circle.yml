@@ -22,10 +22,8 @@ jobs:
           command: $(aws ecr get-login --no-include-email --region ap-northeast-1)
       - checkout
       - run:
-          command: docker build . -t hoge
-      - run:
           command: docker build -t nk-api .
       - run:
-          command: docker tag nk-api:hoge 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:hoge
+          command: docker tag nk-api:latest 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:latest
       - run:
-          command: docker push 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:hoge
+          command: docker push 322011321453.dkr.ecr.ap-northeast-1.amazonaws.com/nk-api:latest
